@@ -1,31 +1,55 @@
 # Frontend — Transparencia del Gasto Público
 
-SPA en React + Vite para visualización de gasto público nacional, autonómico y comparativa europea.
+SPA en React para visualización interactiva del gasto público de España y comparativa europea.
+
+## Demo
+
+https://transparencia-gasto.netlify.app
+
+### Credenciales de prueba
+
+| Email | Contraseña | Rol |
+|---|---|---|
+| `admin@transparencia.es` | `Admin1234!` | admin |
+| `demo@transparencia.es` | `Demo1234!` | user |
 
 ## Stack
 
-- React 18
-- Vite 5
-- React Router 7
-- Recharts + react-simple-maps
-- Axios
+- React 18 · Vite 5 · React Router 7
+- Recharts (gráficos) · react-simple-maps (mapa)
+- Axios · react-icons
 
-## Comandos
+## Instalación
 
 ```bash
 npm install
+cp .env.example .env   # Ajustar VITE_API_URL si procede
 npm run dev
-npm run lint
-npm run build
-npm run preview
 ```
 
-## Variables de entorno
+## Scripts
 
-- `VITE_API_URL` (opcional): URL base de la API.
-	- Por defecto: `http://localhost:5000/api`
+| Comando | Descripción |
+|---|---|
+| `npm run dev` | Servidor de desarrollo (puerto 5173) |
+| `npm run build` | Build de producción en `dist/` |
+| `npm run preview` | Previsualiza el build |
+| `npm run lint` | Lint con ESLint |
 
-## Notas de compatibilidad
+## Variable de entorno
 
-- El proyecto está fijado en React 18 para compatibilidad con `react-simple-maps@3`.
-- Para migrar a React 19, primero habría que actualizar/reemplazar esa librería.
+| Variable | Valor por defecto |
+|---|---|
+| `VITE_API_URL` | `http://localhost:5000/api` |
+
+## Estructura
+
+```
+src/
+├── components/       # Navbar, Filters, MapSpain, Charts/...
+├── context/          # AuthContext, BudgetContext
+├── hooks/            # useAuth, useBudget
+├── pages/            # Dashboard, Regions, RegionDetail, Europa, Financiacion, Login, Register, About
+├── services/         # api.js (cliente Axios)
+└── utils/            # format.js
+```
