@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FiMap } from 'react-icons/fi';
-import { regionsAPI, budgetsAPI } from '../services/api';
+import { regionsAPI, budgetsAPI, statsAPI } from '../services/api';
 import { formatCurrency } from '../utils/format';
 import './Regions.css';
 
@@ -10,9 +10,30 @@ function Regions() {
   const [regionBudgets, setRegionBudgets] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+  const [selectedYear, setSelectedYear] = useState(null);
+  const [availableYears, setAvailableYears] = useState([]);
 
+  // Carga inicial: obtener años disponibles y seleccionar el más reciente
   useEffect(() => {
+    const loadYears = async () => {
+      try {
+        const yearsRes = await statsAPI.years();
+        const years = yearsRes.data.sort((a, b) => b - a);
+        setAvailableYears(years);
+        if (years.length > 0) setSelectedYear(years[0]);
+      } catch {
+        // Fallback: rango estático
+        const fallback = Array.from({ length: 6 }, (_, i) => new Date().getFullYear() - i);
+        setAvailableYears(fallback);
+        setSelectedYear(fallback[0]);
+      }
+    };
+    loadYears();
+  }, []);
+
+  // Cargar datos al cambiar año
+  useEffect(() => {
+    if (!selectedYear) return;
     const loadData = async () => {
       try {
         setLoading(true);
@@ -22,7 +43,19 @@ function Regions() {
           budgetsAPI.byRegion({ year: selectedYear }),
         ]);
         setRegions(regionsRes.data);
-        setRegionBudgets(budgetsRes.data);
+        const budgets = budgetsRes.data;
+
+        // Si no hay datos para este año, caer al siguiente con datos
+        const hasData = budgets.some(b => b.total > 0);
+        if (!hasData && availableYears.length > 0) {
+          const fallbackYear = availableYears.find(y => y < selectedYear);
+          if (fallbackYear) {
+            setSelectedYear(fallbackYear);
+            return;
+          }
+        }
+
+        setRegionBudgets(budgets);
       } catch (err) {
         console.error('Error cargando regiones:', err);
         setError('No se pudieron cargar las comunidades autónomas. Inténtalo de nuevo.');
@@ -31,7 +64,7 @@ function Regions() {
       }
     };
     loadData();
-  }, [selectedYear]);
+  }, [selectedYear, availableYears]);
 
   // Combinar datos
   const regionsWithData = regions.map(r => {
@@ -53,11 +86,11 @@ function Regions() {
           <p>Explora el presupuesto asignado a cada comunidad autónoma</p>
         </div>
         <select
-          value={selectedYear}
+          value={selectedYear || ''}
           onChange={(e) => setSelectedYear(parseInt(e.target.value))}
           className="year-select"
         >
-          {Array.from({ length: 6 }, (_, i) => new Date().getFullYear() - i).map(y => (
+          {availableYears.map(y => (
             <option key={y} value={y}>{y}</option>
           ))}
         </select>

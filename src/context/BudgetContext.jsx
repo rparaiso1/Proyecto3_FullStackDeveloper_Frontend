@@ -156,6 +156,19 @@ export function BudgetProvider({ children }) {
           budgetsAPI.evolution({ territory: 'España' }),   // Evolución por sector (sin filtro)
         ]);
 
+      // Si el año seleccionado no tiene datos (presupuesto 0) y hay
+      // otros años disponibles, caemos al último año con datos reales.
+      const budget = summaryRes.data?.nationalBudget || 0;
+      if (budget === 0 && selectedYear && availableYears.length > 0) {
+        const yearsBelow = availableYears
+          .filter(y => y < selectedYear)
+          .sort((a, b) => b - a);
+        if (yearsBelow.length > 0) {
+          setSelectedYear(yearsBelow[0]);
+          return; // Se volverá a ejecutar con el nuevo año
+        }
+      }
+
       setSummary(summaryRes.data);
       setMapData(mapRes.data);
       setSectorData(sectorRes.data);
@@ -169,7 +182,7 @@ export function BudgetProvider({ children }) {
     } finally {
       setLoading(false);
     }
-  }, [selectedYear, selectedSector, selectedRegion]);
+  }, [selectedYear, selectedSector, selectedRegion, availableYears]);
 
   // Disparar la recarga cada vez que cambien los filtros,
   // pero solo después de que la carga inicial haya terminado.
