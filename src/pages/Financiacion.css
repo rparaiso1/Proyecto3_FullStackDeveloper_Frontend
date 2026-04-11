@@ -1,0 +1,412 @@
+/* =====================================================
+   FINANCIACIÓN — Estilos específicos
+   Layout de página usa .page-container de App.css
+   ===================================================== */
+
+/* Header */
+.fin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  flex-wrap: wrap;
+}
+
+.fin-header-text h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fin-header-text p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.fin-source {
+  font-size: 0.8rem;
+  color: var(--accent-primary);
+  margin-top: 4px;
+  display: inline-block;
+}
+
+.fin-source a,
+.fin-nota a {
+  color: var(--accent-primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.fin-source a:hover,
+.fin-nota a:hover {
+  text-decoration: underline;
+}
+
+.fin-methodology-disclaimer {
+  background: rgba(251, 191, 36, 0.06);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 0;
+  margin-bottom: var(--spacing-lg);
+}
+
+.fin-methodology-disclaimer svg {
+  flex-shrink: 0;
+  color: #FBBF24;
+  margin-top: 2px;
+}
+
+.fin-methodology-disclaimer .methodology-text {
+  display: block;
+  max-width: 1100px;
+}
+
+.fin-methodology-disclaimer .methodology-text p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.84rem;
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+/* KPIs */
+.fin-kpis {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.fin-kpi {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.fin-kpi-label {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.fin-kpi-value {
+  font-size: 1.6rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.fin-kpi-sub {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+/* Destacados */
+.fin-highlights {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.fin-highlight {
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-md);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  border: 1px solid;
+}
+
+.fin-highlight.superavit {
+  background: rgba(16, 185, 129, 0.08);
+  border-color: rgba(16, 185, 129, 0.25);
+}
+
+.fin-highlight.deficit {
+  background: rgba(239, 68, 68, 0.08);
+  border-color: rgba(239, 68, 68, 0.25);
+}
+
+.highlight-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.highlight-title {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 2px 0;
+}
+
+.highlight-region {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 2px 0;
+}
+
+.highlight-val {
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin: 0 0 4px 0;
+}
+
+.fin-highlight.superavit .highlight-val { color: #10B981; }
+.fin-highlight.deficit .highlight-val { color: #EF4444; }
+
+.highlight-sub {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Tabs */
+.fin-tabs {
+  display: flex;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-lg);
+  flex-wrap: wrap;
+}
+
+.fin-tab {
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.fin-tab:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.fin-tab.active {
+  background: var(--accent-primary);
+  color: white;
+  border-color: var(--accent-primary);
+}
+
+/* Estructura layout */
+.estructura-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-lg);
+}
+
+.estructura-chart {
+  flex: 0 0 50%;
+  min-width: 0;
+}
+
+.estructura-legend {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  min-width: 0;
+}
+
+/* Estructura skeleton */
+.estructura-skeleton-layout {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+.estructura-skeleton-lines {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.est-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+}
+
+.est-color {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.est-nombre {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  margin: 0 0 2px 0;
+}
+
+.est-detalle {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin: 0 0 2px 0;
+}
+
+.est-val {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Tabla */
+.fin-table-wrapper {
+  overflow-x: auto;
+}
+
+.fin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.fin-table th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--border-color);
+  background: var(--bg-primary);
+  position: sticky;
+  top: 0;
+}
+
+.fin-table td {
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  color: var(--text-primary);
+}
+
+.fin-table .text-right {
+  text-align: right;
+}
+
+.fin-table .row-superavit:hover { background: rgba(16, 185, 129, 0.05); }
+.fin-table .row-deficit:hover  { background: rgba(239, 68, 68, 0.05); }
+
+.coverage-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.coverage-badge.green { background: rgba(16, 185, 129, 0.15); color: #10B981; }
+.coverage-badge.red   { background: rgba(239, 68, 68, 0.15); color: #EF4444; }
+
+.table-total td {
+  border-top: 2px solid var(--border-color);
+  border-bottom: none;
+  padding-top: 0.9rem;
+}
+
+/* Nota metodológica */
+.fin-nota {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-left: 3px solid var(--accent-primary);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+}
+
+.fin-nota h4 {
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-sm) 0;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.fin-nota p {
+  color: var(--text-secondary);
+  font-size: 0.83rem;
+  line-height: 1.6;
+  margin: 0 0 0.5rem 0;
+}
+
+.fin-nota p:last-child { margin-bottom: 0; }
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .fin-kpis { grid-template-columns: repeat(2, 1fr); }
+  .estructura-layout {
+    flex-direction: column;
+  }
+  .estructura-chart {
+    flex: none;
+    width: 100%;
+  }
+  .estructura-skeleton-layout {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .fin-header { flex-direction: column; }
+  .fin-header-text h1 { font-size: 1.35rem; }
+  .fin-kpis { grid-template-columns: 1fr 1fr; }
+  .fin-highlights { grid-template-columns: 1fr; }
+  .fin-tabs { gap: 0.35rem; }
+  .fin-tab { font-size: 0.75rem; padding: 0.45rem 0.65rem; }
+  .fin-kpi-value { font-size: 1.3rem; }
+  .fin-table th,
+  .fin-table td { padding: 0.5rem 0.6rem; font-size: 0.78rem; }
+  .est-nombre { font-size: 0.82rem; }
+  .est-detalle { font-size: 0.7rem; }
+  .est-val { font-size: 0.75rem; }
+  .fin-nota { padding: 1rem; }
+  .fin-nota h4 { font-size: 0.88rem; }
+  .fin-nota p { font-size: 0.78rem; }
+  .fin-methodology-disclaimer { padding: 10px 12px; }
+  .fin-methodology-disclaimer .methodology-text p { font-size: 0.78rem; line-height: 1.45; }
+}
+
+@media (max-width: 480px) {
+  .fin-header-text h1 { font-size: 1.15rem; }
+  .fin-kpis { grid-template-columns: 1fr; }
+  .fin-kpi-value { font-size: 1.2rem; }
+  .fin-kpi { padding: 1rem; }
+  .fin-tab { font-size: 0.72rem; padding: 0.4rem 0.55rem; }
+  .highlight-val { font-size: 1rem; }
+  .highlight-region { font-size: 0.95rem; }
+  .fin-table th,
+  .fin-table td { padding: 0.4rem 0.45rem; font-size: 0.72rem; white-space: nowrap; }
+}

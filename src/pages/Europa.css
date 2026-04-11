@@ -1,0 +1,531 @@
+/* =====================================================
+   EUROPA — Comparativa Europea (Eurostat)
+   ===================================================== */
+
+/* ─── Loading & Error states ─── */
+.europa-loading,
+.europa-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  gap: 16px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.europa-error svg {
+  color: var(--danger);
+}
+
+/* ─── Header (like Financiacion) ─── */
+.eu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  flex-wrap: wrap;
+}
+
+.eu-header-text h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.eu-header-text p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.eu-source {
+  font-size: 0.8rem;
+  color: var(--accent-primary);
+  margin-top: 4px;
+  display: inline-block;
+}
+
+.eu-year-select {
+  padding: 10px 16px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.eu-year-select:hover,
+.eu-year-select:focus {
+  border-color: var(--primary);
+  outline: none;
+}
+
+/* ─── KPI Grid (like KPICards) ─── */
+.europa-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.eu-kpi-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal), background var(--transition-normal);
+  border-left: 4px solid var(--kpi-accent, var(--primary));
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.eu-kpi-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.025) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.eu-kpi-card:hover {
+  transform: translateY(-3px);
+  background: var(--card-bg-hover);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04);
+}
+
+.eu-kpi-icon {
+  font-size: 2.2rem;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3));
+  color: var(--kpi-accent, var(--primary));
+}
+
+.eu-kpi-content {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.eu-kpi-title {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+
+.eu-kpi-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+  margin: 4px 0;
+  letter-spacing: -0.3px;
+}
+
+.eu-kpi-sub {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.eu-kpi-diff {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+.eu-kpi-diff.above {
+  color: var(--warning);
+  background: rgba(251, 191, 36, 0.12);
+}
+
+.eu-kpi-diff.below {
+  color: var(--success);
+  background: rgba(16, 185, 129, 0.12);
+}
+
+/* ─── Highlights (like Financiacion) ─── */
+.eu-highlights {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.eu-highlight {
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-md);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  border: 1px solid;
+}
+
+.eu-highlight.top-spender {
+  background: rgba(239, 68, 68, 0.08);
+  border-color: rgba(239, 68, 68, 0.25);
+}
+
+.eu-highlight.low-spender {
+  background: rgba(16, 185, 129, 0.08);
+  border-color: rgba(16, 185, 129, 0.25);
+}
+
+.eu-highlight.top-spender .highlight-val { color: #EF4444; }
+.eu-highlight.low-spender .highlight-val { color: #10B981; }
+
+/* ─── Tabs (like Financiacion) ─── */
+.eu-tabs {
+  display: flex;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-lg);
+  flex-wrap: wrap;
+}
+
+.eu-tab {
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.eu-tab:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.eu-tab.active {
+  background: var(--accent-primary);
+  color: white;
+  border-color: var(--accent-primary);
+}
+
+/* ─── Secciones ─── */
+.europa-section {
+  margin-bottom: var(--spacing-xl);
+}
+
+.europa-section.fadeInSection {
+  animation: fadeInSection var(--transition-slow) both;
+}
+
+.eu-avg-note {
+  margin: -4px 0 10px;
+  font-size: 0.84rem;
+  color: var(--accent-primary);
+  font-weight: 600;
+}
+
+/* ─── Country selector (sectores tab) ─── */
+.eu-country-selector {
+  margin-bottom: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+}
+
+.eu-selector-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.eu-selector-hint {
+  font-weight: 400;
+  text-transform: none;
+  color: var(--text-muted);
+  letter-spacing: 0;
+}
+
+/* ─── Country chips ─── */
+.country-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.country-chip {
+  padding: 4px 10px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.country-chip:hover {
+  border-color: var(--primary);
+  color: var(--text-primary);
+}
+
+.country-chip.selected {
+  background: var(--primary-light);
+  border-color: var(--primary);
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.country-chip.spain.selected {
+  background: rgba(248, 113, 113, 0.15);
+  border-color: #F87171;
+  color: #F87171;
+}
+
+/* ─── Sector / Debt tables ─── */
+.eu-sector-table-wrap {
+  margin-top: var(--spacing-lg);
+}
+
+.eu-sector-table-wrap h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.eu-sector-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.83rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.eu-sector-table th {
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.72rem;
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.eu-sector-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.eu-sector-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.eu-sector-table tbody tr:hover {
+  background: var(--bg-hover);
+}
+
+.eu-sector-table td.above {
+  color: var(--warning);
+  font-weight: 600;
+}
+
+.eu-sector-table td.below {
+  color: var(--success);
+  font-weight: 600;
+}
+
+.eu-sector-table td.cell-warning {
+  color: #EF4444;
+  font-weight: 600;
+}
+
+/* Status badges */
+.eu-status-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.eu-status-badge.warning {
+  background: rgba(239, 68, 68, 0.12);
+  color: #EF4444;
+}
+
+.eu-status-badge.ok {
+  background: rgba(16, 185, 129, 0.12);
+  color: #10B981;
+}
+
+/* ─── Scatter legend ─── */
+.eu-scatter-legend {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  justify-content: center;
+  margin-top: var(--spacing-md);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.scatter-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.scatter-dot {
+  display: inline-block;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.scatter-line {
+  width: 20px;
+  height: 0;
+  border-top: 2px dashed #F87171;
+  flex-shrink: 0;
+}
+
+/* ─── Chart-specific improvements ─── */
+.eu-ranking-chart {
+  overflow-y: auto;
+  max-height: 75vh;
+}
+
+.eu-sector-chart .recharts-legend-wrapper {
+  padding-top: 8px !important;
+}
+
+.eu-scatter-chart {
+  min-height: 480px;
+}
+
+.eu-chart-scroll {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.eu-chart-inner {
+  width: 100%;
+}
+
+/* ─── Disclaimer ─── */
+.europa-disclaimer {
+  animation-delay: 0.25s;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 1024px) {
+  .eu-highlights {
+    grid-template-columns: 1fr;
+  }
+  .europa-kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .eu-header {
+    flex-direction: column;
+  }
+  .eu-header-text h1 {
+    font-size: 1.35rem;
+  }
+
+  .eu-tabs {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .eu-tab {
+    white-space: nowrap;
+    font-size: 0.78rem;
+    padding: 0.5rem 0.9rem;
+  }
+
+  .eu-sector-table-wrap {
+    overflow-x: auto;
+  }
+
+  .eu-scatter-legend {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    align-items: flex-start;
+  }
+
+  .eu-ranking-chart {
+    max-height: 60vh;
+  }
+
+  .eu-chart-inner.mobile-sector {
+    min-width: 760px;
+  }
+
+  .eu-chart-inner.mobile-scatter {
+    min-width: 760px;
+  }
+
+  .eu-kpi-icon {
+    width: 44px;
+    height: 44px;
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .europa-kpi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .eu-kpi-value {
+    font-size: 1.2rem;
+  }
+
+  .eu-header-text h1 {
+    font-size: 1.15rem;
+  }
+}

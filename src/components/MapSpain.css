@@ -1,0 +1,264 @@
+.map-container {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.map-container::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(79,158,255,0.35), transparent);
+  pointer-events: none;
+}
+
+.map-subtitle {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin: -8px 0 var(--spacing-md) 0;
+}
+
+.map-wrapper {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.map-wrapper svg {
+  width: 100%;
+  height: auto;
+}
+
+/* ---- Map Skeleton ---- */
+.map-skeleton {
+  padding: 0;
+}
+
+.map-skeleton-shape {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 350px;
+}
+
+.map-skeleton-blob {
+  width: 70%;
+  height: 260px;
+  border-radius: 40% 55% 45% 50%;
+  background: linear-gradient(90deg, var(--border-color) 25%, var(--border-color-light) 50%, var(--border-color) 75%);
+  background-size: 300% 100%;
+  animation: shimmer 1.6s infinite ease-in-out;
+  opacity: 0.6;
+}
+
+.map-skeleton-legend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+
+/* ---- Map Loading (fallback) ---- */
+.map-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  color: var(--text-muted);
+}
+
+.map-loading-icon {
+  font-size: 3rem;
+  margin-bottom: var(--spacing-md);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Tooltip del mapa */
+.map-tooltip {
+  position: fixed;
+  z-index: 100;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
+  pointer-events: none;
+  min-width: 200;
+  animation: tooltipFadeIn 0.2s var(--ease-out-smooth) both;
+}
+
+@keyframes tooltipFadeIn {
+  from { opacity: 0; transform: translateY(4px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.map-tooltip strong {
+  display: block;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.tooltip-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.82rem;
+  padding: 2px 0;
+}
+
+.tooltip-row span:first-child {
+  color: var(--text-muted);
+}
+
+.tooltip-row span:last-child {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Leyenda */
+.map-legend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+}
+
+.legend-gradient {
+  width: 150px;
+  height: 12px;
+  border-radius: 6px;
+  background: linear-gradient(to right, #14283c, #3B82F6);
+}
+
+.legend-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.map-disclaimer {
+  text-align: center;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  opacity: 0.7;
+  margin: 8px auto 0;
+  max-width: 500px;
+  line-height: 1.4;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  .map-container {
+    padding: var(--spacing-md);
+  }
+
+  .map-skeleton-shape {
+    min-height: 260px;
+  }
+
+  .map-skeleton-blob {
+    height: 180px;
+  }
+
+  .map-tooltip {
+    min-width: 170px;
+    font-size: 0.8rem;
+  }
+
+  .legend-gradient {
+    width: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .map-container {
+    padding: var(--spacing-sm);
+  }
+
+  .map-subtitle {
+    font-size: 0.78rem;
+  }
+
+  .map-skeleton-shape {
+    min-height: 200px;
+  }
+
+  .map-skeleton-blob {
+    height: 140px;
+  }
+
+  .legend-label {
+    font-size: 0.68rem;
+  }
+
+  .legend-gradient {
+    width: 80px;
+    height: 10px;
+  }
+}
+
+/* ---- Inset Canarias ---- */
+.map-wrapper {
+  position: relative;
+}
+
+.canarias-inset {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  width: 140px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--card-bg);
+  padding: 2px 4px 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.canarias-label {
+  display: block;
+  text-align: center;
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  margin-bottom: 1px;
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 768px) {
+  .canarias-inset {
+    width: 110px;
+    bottom: 4px;
+    left: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .canarias-inset {
+    width: 90px;
+    bottom: 2px;
+    left: 2px;
+  }
+
+  .canarias-label {
+    font-size: 0.52rem;
+  }
+}
