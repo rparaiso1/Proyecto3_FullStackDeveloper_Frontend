@@ -284,7 +284,7 @@
 }
 
 .fiscal-kpi-label {
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   color: var(--text-muted);
@@ -347,7 +347,7 @@
 }
 
 .fiscal-source {
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
   margin-top: 12px;
   display: flex;

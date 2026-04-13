@@ -30,7 +30,7 @@ function InfoTip({ text, placement = 'top', size = 14 }) {
       left = triggerRect.left + triggerRect.width / 2 - tooltipRect.width / 2;
     }
 
-    // Keep within viewport
+    // Mantener dentro del viewport
     left = Math.max(8, Math.min(left, window.innerWidth - tooltipRect.width - 8));
     if (top < 8) {
       top = triggerRect.bottom + gap;
@@ -57,7 +57,7 @@ function InfoTip({ text, placement = 'top', size = 14 }) {
     setVisible(v => !v);
   };
 
-  // Close on outside click (mobile)
+  // Cerrar al tocar fuera (móvil)
   useEffect(() => {
     if (!visible) return;
     const handleClick = (e) => {

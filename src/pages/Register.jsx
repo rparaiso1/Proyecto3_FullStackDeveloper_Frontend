@@ -62,6 +62,7 @@ function Register() {
               onChange={(e) => setName(e.target.value)}
               placeholder="Tu nombre"
               required
+              autoComplete="name"
             />
           </div>
 
@@ -74,6 +75,7 @@ function Register() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="tu@email.com"
               required
+              autoComplete="email"
             />
           </div>
 
@@ -87,6 +89,7 @@ function Register() {
               placeholder="Mínimo 6 caracteres"
               required
               minLength={6}
+              autoComplete="new-password"
             />
           </div>
 
@@ -99,6 +102,7 @@ function Register() {
               onChange={(e) => setConfirmPassword(e.target.value)}
               placeholder="Repite la contraseña"
               required
+              autoComplete="new-password"
             />
           </div>
 

@@ -42,7 +42,7 @@ function Navbar() {
           <span />
         </button>
 
-        <div id="main-nav-links" className={`navbar-links ${menuOpen ? 'open' : ''}`} role="menubar">
+        <div id="main-nav-links" className={`navbar-links ${menuOpen ? 'open' : ''}`}>
           {isAuthenticated && (
             <>
               {/* ── Sección España ── */}

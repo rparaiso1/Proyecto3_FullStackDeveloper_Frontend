@@ -133,8 +133,8 @@ function Europa() {
       .filter((y) => {
         const exp = expStats.get(y);
         const fisc = fiscStats.get(y);
-        // Require: >=15 countries with expenditure data + Spain data.
-        // EU aggregate and fiscal EU are optional (Eurostat may not publish them).
+        // Requiere: >=15 países con datos de gasto + datos de España.
+        // El agregado UE y el fiscal UE son opcionales (Eurostat puede no publicarlos).
         return exp && exp.countries >= 15 && exp.hasES
           && fisc && fisc.hasES;
       })

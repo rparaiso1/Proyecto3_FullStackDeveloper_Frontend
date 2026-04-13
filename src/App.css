@@ -44,7 +44,7 @@
   /* Texto */
   --text-primary: #EFF6FF;
   --text-secondary: #93C5FD;
-  --text-muted: #4F7CA8;
+  --text-muted: #6B9FCF;
 
   /* Variables alias para compatibilidad */
   --bg-hover: #1A2845;
@@ -160,7 +160,6 @@ textarea:focus-visible {
 
 .route-transition {
   animation: pageFadeSlide 460ms var(--ease-out-smooth);
-  will-change: opacity, transform;
 }
 
 @keyframes pageFadeSlide {
@@ -226,7 +225,7 @@ textarea:focus-visible {
 }
 
 .page-source {
-  font-size: 0.75rem !important;
+  font-size: 0.8rem !important;
   color: var(--primary) !important;
   opacity: 0.8;
   margin-top: 4px !important;
@@ -257,6 +256,7 @@ textarea:focus-visible {
   transition: box-shadow var(--transition-normal), transform var(--transition-normal);
   position: relative;
   overflow: visible;
+  contain: layout style;
 }
 
 .chart-container::before {
@@ -400,7 +400,7 @@ textarea:focus-visible {
 
 .tooltip-pct {
   color: var(--text-muted);
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   margin: 2px 0 0 0;
 }
 

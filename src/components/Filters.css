@@ -31,11 +31,15 @@
   background: transparent;
   border: 1px solid var(--border-color);
   color: var(--text-secondary);
-  padding: 6px 14px;
+  padding: 8px 14px;
   border-radius: var(--radius-sm);
   cursor: pointer;
   font-size: 0.8rem;
   transition: all var(--transition-fast);
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .filters-reset:hover {

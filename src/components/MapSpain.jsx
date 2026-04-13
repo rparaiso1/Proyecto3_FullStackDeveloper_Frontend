@@ -75,7 +75,8 @@ function MapSpain({ onRegionClick }) {
   const handleMouseEnter = useCallback((geo, evt) => {
     const geoName = geo.properties.name;
     const dbName = NAME_MAP[geoName];
-    const data = dbName ? regionDataMap[dbName] : null;
+    if (!dbName) return;
+    const data = regionDataMap[dbName] || null;
 
     setTooltipContent({
       name: dbName || geoName,

@@ -10,10 +10,11 @@
     <meta name="robots" content="index, follow" />
     <meta name="author" content="Transparencia del Gasto Público" />
     <meta name="keywords" content="presupuestos España, gasto público, transparencia, CCAA, comunidades autónomas, Eurostat, PGE, datos abiertos" />
-    <link rel="canonical" href="https://transparencia-gasto.es/" />
+    <link rel="canonical" href="https://transparencia-gasto.netlify.app/" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://transparencia-gasto.netlify.app/" />
     <meta property="og:title" content="Transparencia del Gasto Público en España" />
     <meta property="og:description" content="Explora cómo se distribuye el gasto público en España y Europa con visualizaciones interactivas basadas en datos oficiales." />
     <meta property="og:locale" content="es_ES" />
@@ -26,11 +27,11 @@
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <!-- Fonts: preconnect + preload -->
+    <!-- Fonts: preconnect + carga no bloqueante -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" /></noscript>
   </head>
   <body>
     <noscript>Necesitas activar JavaScript para usar esta aplicación.</noscript>

@@ -89,6 +89,7 @@ function Regions() {
           value={selectedYear || ''}
           onChange={(e) => setSelectedYear(parseInt(e.target.value))}
           className="year-select"
+          aria-label="Seleccionar año"
         >
           {availableYears.map(y => (
             <option key={y} value={y}>{y}</option>

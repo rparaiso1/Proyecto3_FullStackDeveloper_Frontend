@@ -404,9 +404,9 @@
   .fin-kpis { grid-template-columns: 1fr; }
   .fin-kpi-value { font-size: 1.2rem; }
   .fin-kpi { padding: 1rem; }
-  .fin-tab { font-size: 0.72rem; padding: 0.4rem 0.55rem; }
+  .fin-tab { font-size: 0.75rem; padding: 0.4rem 0.55rem; }
   .highlight-val { font-size: 1rem; }
   .highlight-region { font-size: 0.95rem; }
   .fin-table th,
-  .fin-table td { padding: 0.4rem 0.45rem; font-size: 0.72rem; white-space: nowrap; }
+  .fin-table td { padding: 0.4rem 0.45rem; font-size: 0.75rem; white-space: nowrap; }
 }
