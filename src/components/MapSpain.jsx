@@ -82,12 +82,13 @@ function MapSpain({ onRegionClick }) {
     const dbName = NAME_MAP[geoName];
     if (!dbName) return;
     const data = regionDataMap[dbName] || null;
+    if (!data) return; // sin datos para este filtro → no mostrar tooltip
 
     setTooltipContent({
-      name: dbName || geoName,
-      total: data ? formatCurrency(data.total) : 'Sin datos para este filtro',
-      perCapita: data ? `${data.perCapita.toLocaleString('es-ES')} €/hab` : '-',
-      population: data ? data.population.toLocaleString('es-ES') : '-',
+      name: dbName,
+      total: formatCurrency(data.total),
+      perCapita: `${data.perCapita.toLocaleString('es-ES')} €/hab`,
+      population: data.population.toLocaleString('es-ES'),
     });
 
     setTooltipPos({ x: evt.clientX, y: evt.clientY });
