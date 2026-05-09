@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
-import { FiLock, FiMail, FiKey, FiLogIn, FiEye, FiEyeOff } from 'react-icons/fi';
+import { FiLock, FiMail, FiKey, FiLogIn, FiEye, FiEyeOff, FiClock } from 'react-icons/fi';
 import './Auth.css';
 
 function Login() {
@@ -84,6 +84,14 @@ function Login() {
         <p className="auth-switch">
           ¿No tienes cuenta? <Link to="/register">Regístrate</Link>
         </p>
+
+        <div className="auth-notice">
+          <FiClock size={13} />
+          <span>
+            La API está alojada en un servidor gratuito que entra en reposo cuando no se usa.
+            Si la primera solicitud tarda más de lo habitual, espera unos segundos y vuelve a intentarlo.
+          </span>
+        </div>
 
         <div className="demo-credentials">
           <p className="demo-title"><FiKey size={12} /> Credenciales de prueba:</p>

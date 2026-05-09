@@ -53,6 +53,14 @@ function RegionChart() {
   return (
     <div className="chart-container">
       <h3 className="chart-title"><HiOutlineBuildingLibrary size={16} style={{ verticalAlign: 'middle', marginRight: 6 }} />Gasto por Comunidad Autónoma <InfoTip text="Ranking de las 17 CCAA ordenadas por presupuesto total. El color indica la intensidad relativa del gasto." /></h3>
+
+      {!loading && !chartData.length && (
+        <p style={{ textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.85rem', padding: '40px 0' }}>
+          No hay datos disponibles para los filtros seleccionados. Prueba a cambiar el año o el sector.
+        </p>
+      )}
+
+      {chartData.length > 0 && (
       <ResponsiveContainer width="100%" height={Math.max(400, chartData.length * 28)}>
         <BarChart data={chartData} layout="vertical" margin={{ top: 5, right: 20, left: 10, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="var(--border-color)" horizontal={false} />
@@ -79,6 +87,7 @@ function RegionChart() {
           </Bar>
         </BarChart>
       </ResponsiveContainer>
+      )}
     </div>
   );
 }

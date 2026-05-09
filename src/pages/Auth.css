@@ -190,6 +190,26 @@
   color: var(--primary);
 }
 
+.auth-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  background: rgba(234, 179, 8, 0.07);
+  border: 1px solid rgba(234, 179, 8, 0.2);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: var(--spacing-md);
+  line-height: 1.5;
+}
+
+.auth-notice svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: #ca8a04;
+}
+
 .demo-credentials {
   margin-top: var(--spacing-md);
   padding: var(--spacing-md);
