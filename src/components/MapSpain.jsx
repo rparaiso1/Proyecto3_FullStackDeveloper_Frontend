@@ -13,14 +13,18 @@ const GEO_URL = 'https://raw.githubusercontent.com/codeforgermany/click_that_hoo
 // Mapeo de nombres del GeoJSON a nombres de la base de datos
 const NAME_MAP = {
   'Andalucía': 'Andalucía',
+  'Andalucia': 'Andalucía',
   'Aragón': 'Aragón',
+  'Aragon': 'Aragón',
   'Asturias': 'Asturias',
   'Principado de Asturias': 'Asturias',
   'Islas Baleares': 'Islas Baleares',
   'Illes Balears': 'Islas Baleares',
+  'Baleares': 'Islas Baleares',
   'Canarias': 'Canarias',
   'Cantabria': 'Cantabria',
   'Castilla y León': 'Castilla y León',
+  'Castilla-Leon': 'Castilla y León',
   'Castilla-La Mancha': 'Castilla-La Mancha',
   'Cataluña': 'Cataluña',
   'Catalunya': 'Cataluña',
@@ -36,6 +40,7 @@ const NAME_MAP = {
   'Navarra': 'Navarra',
   'Comunidad Foral de Navarra': 'Navarra',
   'País Vasco': 'País Vasco',
+  'Pais Vasco': 'País Vasco',
   'Euskadi': 'País Vasco',
   'La Rioja': 'La Rioja',
   'Ceuta': null,
@@ -80,7 +85,7 @@ function MapSpain({ onRegionClick }) {
 
     setTooltipContent({
       name: dbName || geoName,
-      total: data ? formatCurrency(data.total) : 'Sin datos',
+      total: data ? formatCurrency(data.total) : 'Sin datos para este filtro',
       perCapita: data ? `${data.perCapita.toLocaleString('es-ES')} €/hab` : '-',
       population: data ? data.population.toLocaleString('es-ES') : '-',
     });
